@@ -1,10 +1,13 @@
 import {
+    IsArray,
     IsEmail,
+    IsOptional,
     IsString,
     Matches,
     MaxLength,
     MinLength,
 } from "class-validator";
+import { validRoles } from "../interfaces";
 
 export class CreateUserDto {
 
@@ -29,5 +32,9 @@ export class CreateUserDto {
     @MinLength(10)
     phone_number: string;
 
+    @IsOptional()
+    @IsArray()
+    @IsString({ each: true })
+    roles?: string[];
 
 }

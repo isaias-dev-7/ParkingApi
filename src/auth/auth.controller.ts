@@ -1,13 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, SetMetadata } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Get, Post, Body, Patch, ParseUUIDPipe, Param} from '@nestjs/common';
 
 import { AuthService } from './auth.service';
-import { CreateUserDto, LoginUserDto} from './dto';
-import { GetUser } from './decorators';
-import { User } from './entities/user.entity';
-import { Auth } from './decorators';
-import { validRoles } from './interfaces';
-
+import { CreateUserDto, LoginUserDto, UpdateUserDto} from './dto';
 
 @Controller('auth')
 export class AuthController {
@@ -19,18 +13,16 @@ export class AuthController {
   }
 
   @Post('login')
-  loginUser(@Body() loginUserDto: LoginUserDto){
+  loginUser(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto)
   }
 
-
-  @Get('private')
-  @Auth(validRoles.client)
-  test(
-    @GetUser() user: User,
-    @GetUser('email') email: string
-  ){
-
-    return "private";
+  @Patch(':id')
+  updateUser(
+    @Param('id',ParseUUIDPipe) id: string, 
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    return this.authService.update(id, updateUserDto);
   }
+
 }

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 
 import { Repository } from 'typeorm';
-import { CreateUserDto, LoginUserDto } from './dto';
+import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt'
 import { JwtPayload } from './interfaces';
@@ -52,6 +52,19 @@ export class AuthService {
         ...user,
         token: this.getJwtToken({ id: user.id })
        };
+  }
+
+  async update(id: string, updateUserDto: UpdateUserDto){
+    try {
+      const user = await this.userRepository.preload({id, ...updateUserDto});
+      if(!user) throw new BadRequestException(`User with id ${ id } not found`);
+    
+      await this.userRepository.save(user);
+      return user;
+    } catch (error) {
+      this.DbExceptions(error);
+    }
+     
   }
 
 
