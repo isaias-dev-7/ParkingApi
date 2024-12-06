@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto, LoginUserDto } from './dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt'
-import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { JwtPayload } from './interfaces';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +30,7 @@ export class AuthService {
       delete user.password
       return {
         ...user,
-        token: this.getJwtToken({ email: user.email })
+        token: this.getJwtToken({ id: user.id })
        };
     } catch (error) {
       this.DbExceptions(error);
@@ -42,7 +42,7 @@ export class AuthService {
       const { password, email } = loginUserDto;
       const user = await this.userRepository.findOne({
         where: { email },
-        select: { password: true, email: true},
+        select: { password: true, email: true, id: true },
        });
       
        if(!user || !bcrypt.compareSync(password, user.password)) 
@@ -50,9 +50,11 @@ export class AuthService {
 
        return {
         ...user,
-        token: this.getJwtToken({ email: user.email })
+        token: this.getJwtToken({ id: user.id })
        };
   }
+
+
 
  
 

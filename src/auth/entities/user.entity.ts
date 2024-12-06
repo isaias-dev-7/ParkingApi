@@ -1,5 +1,4 @@
-import { IsArray, IsString } from "class-validator";
-import { Column,
+import { BeforeInsert, BeforeUpdate, Column,
          Entity, 
          PrimaryGeneratedColumn 
         } from "typeorm";
@@ -24,17 +23,26 @@ export class User {
     })
     password: string;
 
-    @Column('text')
-    phone_number: string;
-
-    @IsArray()
-    @IsString({
-        each: true,
+    @Column('text',{
+        unique: true,
     })
+    phone_number: string;
 
     @Column('text',{
         array: true,
-        default: ['user'], 
+        default: ['client'], 
     })
     roles: string[];
+
+
+    @BeforeInsert()
+    checkFildsInsert(){
+        this.email = this.email.toLowerCase().trim()
+    }
+
+
+    @BeforeUpdate()
+    checkFildsUpdate(){
+        this.email = this.email.toLowerCase().trim()
+    }
 }
