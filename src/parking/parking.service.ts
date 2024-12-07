@@ -1,26 +1,40 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateParkingDto } from './dto/create-parking.dto';
-import { UpdateParkingDto } from './dto/update-parking.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Parking } from './entities/parking.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ParkingService {
-  create(createParkingDto: CreateParkingDto) {
-    return 'This action adds a new parking';
+
+  constructor(
+    @InjectRepository(Parking)
+    private readonly parkingRepository: Repository<Parking>,
+  ){}
+
+  async create(createParkingDto: CreateParkingDto) {
+    try {
+      const parking  = this.parkingRepository.create({...createParkingDto});
+      await this.parkingRepository.save(parking);
+      
+      return parking;
+    } catch (error) {
+      this.DbExceptions(error);
+    }
   }
 
-  findAll() {
-    return `This action returns all parking`;
+  findOne() {
+    const location = 'Ahogados % 17 y 18';
+    const parking = this.parkingRepository.findOneBy({location});
+    if(!parking) throw new BadRequestException(`Parking with not found`);
+    return parking;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} parking`;
-  }
 
-  update(id: number, updateParkingDto: UpdateParkingDto) {
-    return `This action updates a #${id} parking`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} parking`;
+  private DbExceptions(error): never {
+    throw (error.code === '23505') ?
+      new BadRequestException(error.detail)
+      :
+      new InternalServerErrorException();
   }
 }

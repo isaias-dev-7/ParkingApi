@@ -2,12 +2,15 @@ import { Controller, Get, Post, Body, Patch, ParseUUIDPipe, Param} from '@nestjs
 
 import { AuthService } from './auth.service';
 import { CreateUserDto, LoginUserDto, UpdateUserDto} from './dto';
+import { Auth } from './decorators';
+import { validRoles } from './interfaces';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register') 
+  @Auth(validRoles.admin)
   create(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
@@ -18,6 +21,7 @@ export class AuthController {
   }
 
   @Patch(':id')
+  @Auth(validRoles.admin)
   updateUser(
     @Param('id',ParseUUIDPipe) id: string, 
     @Body() updateUserDto: UpdateUserDto

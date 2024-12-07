@@ -1,5 +1,7 @@
+import { Reservation } from "src/reservation/entities/reservation.entity";
 import { BeforeInsert, BeforeUpdate, Column,
          Entity, 
+         OneToMany, 
          PrimaryGeneratedColumn 
         } from "typeorm";
 
@@ -34,6 +36,12 @@ export class User {
     })
     roles: string[];
 
+    @OneToMany(
+        () => Reservation,
+        reservation => reservation.user,
+        {cascade: true},
+    )
+    reservations?: Reservation[];
 
     @BeforeInsert()
     checkFildsInsert(){
