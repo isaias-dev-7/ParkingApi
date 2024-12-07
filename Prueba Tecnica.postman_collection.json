@@ -6,62 +6,193 @@
 	},
 	"item": [
 		{
-			"name": "create-user",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"fullname\": \"Pepe\",\r\n   \"password\": \"pepe123==M\",\r\n   \"email\": \"pepe@gmail.com\",\r\n   \"phone_number\": \"5351194893\"\r\n\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pepe2@gmail.com\",\r\n    \"password\": \"pepe123==M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:3000/api/auth/register",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"auth",
-						"register"
-					]
+				{
+					"name": "create-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzU0ODM1MCwiZXhwIjoxNzMzNTU1NTUwfQ.biUcBMKyxVNQddPRrtUPQdb7UuvVTKTMrn_w1AAP2IU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"fullname\": \"Marian\",\r\n   \"password\": \"marian==M\",\r\n   \"email\": \"marian@gmail.com\",\r\n   \"phone_number\": \"5351194345\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"Jorge\",\r\n    \"email\": \"pepe2@gmail.com\",\r\n    \"roles\": [\"admin\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/3d14a3fd-2a67-487c-a9b1-07ed270c883f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"3d14a3fd-2a67-487c-a9b1-07ed270c883f"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"pepe@gmail.com\",\r\n    \"password\": \"pepe123==M\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Parking",
+			"item": [
+				{
+					"name": "create-parking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzQ2MjAwNCwiZXhwIjoxNzMzNDY5MjA0fQ.NOvghfW4ggQcVCp2Gf3YqEcPCg_cZARSJzObTK2KUVk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"location\": \"Ahogados % 17 y 18\",\r\n    \"capacity\": 24\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/parking/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"parking",
+								"register"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:3000/api/auth/login",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"auth",
-						"login"
-					]
+				{
+					"name": "parking-info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzU0ODM1MCwiZXhwIjoxNzMzNTU1NTUwfQ.biUcBMKyxVNQddPRrtUPQdb7UuvVTKTMrn_w1AAP2IU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/parking/info",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"parking",
+								"info"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
