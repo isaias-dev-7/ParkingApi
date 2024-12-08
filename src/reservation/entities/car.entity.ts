@@ -20,8 +20,7 @@ export class Car {
 
     @OneToOne(
         () => Reservation,
-        reservation => reservation.car,
-        {onDelete: 'CASCADE'}
+        reservation => reservation.car
     )
     reservation?: Reservation;
 }

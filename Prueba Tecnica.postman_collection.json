@@ -118,7 +118,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzQ2MjAwNCwiZXhwIjoxNzMzNDY5MjA0fQ.NOvghfW4ggQcVCp2Gf3YqEcPCg_cZARSJzObTK2KUVk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYwMjI5MiwiZXhwIjoxNzMzNjA5NDkyfQ.Pu-2bCScWP8NDYGH9RQQPWGBx1TtnKaTYCYq7eFD8tQ",
 									"type": "string"
 								}
 							]
@@ -157,7 +157,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzU0ODM1MCwiZXhwIjoxNzMzNTU1NTUwfQ.biUcBMKyxVNQddPRrtUPQdb7UuvVTKTMrn_w1AAP2IU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYwMjQzOSwiZXhwIjoxNzMzNjA5NjM5fQ.DlNK1OaijZCap5L0w00cuFkQSiduE7kfdE4rEXUcIr8",
 									"type": "string"
 								}
 							]
@@ -185,10 +185,105 @@
 			"name": "Reservation",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "make-reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYxNTk3NCwiZXhwIjoxNzMzNjIzMTc0fQ.Xc-FYFVwzVQuQfB4H5gsWiHSytxjG_DGaO7EfuRbkP4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"car_registration\": \"1734abc\",\r\n    \"brand\": \"lambor\",\r\n    \"color\": \"red\",\r\n    \"date\":\"2024-12-7\",\r\n    \"init_hour\": \"12:00\",\r\n    \"end_hour\": \"01:00\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/reservation",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-all",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/reservation?limit=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-oneby-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/reservation/8ca2e879-9c25-4dd7-86bc-a4eecd4ffb29",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservation",
+								"8ca2e879-9c25-4dd7-86bc-a4eecd4ffb29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelar-reservacion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/reservation/ec09624c-d363-48c4-b8ef-bf32bd9268eb",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservation",
+								"ec09624c-d363-48c4-b8ef-bf32bd9268eb"
+							]
+						}
 					},
 					"response": []
 				}

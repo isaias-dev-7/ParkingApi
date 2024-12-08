@@ -8,8 +8,8 @@ export class Reservation {
     @PrimaryGeneratedColumn('uuid')
     id_reservation: string;
 
-    @Column('date')
-    date: Date;
+    @Column('text')
+    date: string;
 
     @Column('time')
     init_hour: string;
@@ -27,8 +27,13 @@ export class Reservation {
     @OneToOne(
         () => Car,
         car => car.reservation,
-        {cascade:true, eager: true}
+        {eager: true}
     )
     @JoinColumn()
     car: Car;
+
+    @Column('text',{
+        default: 'waiting',
+    })
+    state: string;
 }

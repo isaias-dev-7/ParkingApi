@@ -12,6 +12,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     AuthModule,
     TypeOrmModule.forFeature([Parking]),
   ],
-  exports: [TypeOrmModule]
+  exports: [TypeOrmModule, ParkingService ]
 })
 export class ParkingModule {}

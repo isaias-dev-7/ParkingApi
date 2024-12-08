@@ -1,12 +1,10 @@
-import { IsDate, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsDate, IsNotEmpty, IsOptional, IsString, Matches, MaxLength, MIN, MinLength } from "class-validator";
 
 export class CreateReservationDto {
 
      @IsNotEmpty()
-     @Matches(
-        /^d{4} [A-Z]{3}$/,
-        {message:'invalid car registration'}
-     )
+     @IsString()
+     @MinLength(6)
      car_registration: string;
 
      @IsString()
@@ -15,24 +13,16 @@ export class CreateReservationDto {
      @IsString()
      color: string;
 
-     @IsDate()
-     date: Date;
+     @IsString()  
+     date: string;
 
      @IsString()
-     @Matches(
-        /^([01]d|2[0-3]):([0-5]d)$/,{
-            message: 'invalid hour'
-        }
-     )
+     @MinLength(5)
+     @MaxLength(5)
      init_hour: string;
 
      @IsString()
-     @Matches(
-        /^([01]d|2[0-3]):([0-5]d)$/,{
-            message: 'invalid hour'
-        }
-     )
+     @MinLength(5)
+     @MaxLength(5)
      end_hour: string;
-
-
 }

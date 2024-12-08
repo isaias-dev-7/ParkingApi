@@ -16,7 +16,7 @@ export class ParkingController {
 
   @Get('info')
   @Auth(validRoles.employee)
-  findOne() {
+  find() {
     return this.parkingService.findOne();
   }
 

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ParkingModule } from './parking/parking.module';
 import { ReservationModule } from './reservation/reservation.module';
+import { CommonModule } from './common/common.module';
 
 
 @Module({
@@ -19,9 +20,10 @@ import { ReservationModule } from './reservation/reservation.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    CommonModule,
     AuthModule,
     ParkingModule,
-    ReservationModule
+    ReservationModule,
   ],
 })
 export class AppModule {}

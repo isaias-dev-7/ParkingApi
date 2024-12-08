@@ -14,6 +14,7 @@ export class ParkingService {
 
   async create(createParkingDto: CreateParkingDto) {
     try {
+      await this.parkingRepository.delete({});
       const parking  = this.parkingRepository.create({...createParkingDto});
       await this.parkingRepository.save(parking);
       
@@ -23,9 +24,8 @@ export class ParkingService {
     }
   }
 
-  findOne() {
-    const location = 'Ahogados % 17 y 18';
-    const parking = this.parkingRepository.findOneBy({location});
+  async findOne():Promise<Parking []>{
+    const parking = await this.parkingRepository.find();
     if(!parking) throw new BadRequestException(`Parking with not found`);
     return parking;
   }
