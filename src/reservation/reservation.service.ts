@@ -2,13 +2,14 @@ import { BadRequestException, Injectable, InternalServerErrorException, NotFound
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { CreateReservationDto, UpdateReservationDto } from './dto';
+import { CreateReservationDto} from './dto/create-reservation.dto';
 import { Car, Reservation } from './entities';
 import { User } from 'src/auth/entities/user.entity';
 import { PaginationDto } from '../common/dtos/pagination.dto';
 import { isUUID } from 'class-validator';
 import { ParkingService } from 'src/parking/parking.service';
 import { Parking } from '../parking/entities/parking.entity';
+import { HistoryService } from '../history/history.service';
 
 
 @Injectable()
@@ -26,6 +27,8 @@ export class ReservationService {
     private readonly parkingRepository: Repository<Parking>,
 
     private readonly parkingService: ParkingService,
+
+    private readonly historyService: HistoryService,
   ){}
 
 
@@ -38,9 +41,14 @@ export class ReservationService {
       const reservation = await this.reservationRepository.create({user,car,...rest});
       await this.reservationRepository.save(reservation);
       
+      await this.historyService.createCarsH(car);
+      await this.historyService.createReservationH(reservation);
+  
       this.avaliabilitySpace()
+
       return reservation;
     } catch (error) {
+      console.log(error);
       this.DbExceptions(error);
     }
   }
@@ -62,10 +70,16 @@ export class ReservationService {
 
 
   async remove(id: string) {
+    const parking  = await this.parkingService.findOne();
     const reservation = await this.findOne(id);
     const car = await this.carRepository.findOneBy({id_car: reservation.id_car});
+    
     await this.reservationRepository.delete(reservation);
     await this.carRepository.delete(car);
+    parking[0].availability++;
+    
+    await this.parkingRepository.save(parking[0])
+    await this.historyService.cancelReservations(id);
     return;
   }
 

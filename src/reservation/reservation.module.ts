@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ParkingModule } from 'src/parking/parking.module';
 import { Reservation } from './entities/reservation.entity';
 import { Car } from './entities/car.entity';
+import { HistoryModule } from 'src/history/history.module';
 
 @Module({
   controllers: [ReservationController],
@@ -13,6 +14,7 @@ import { Car } from './entities/car.entity';
   imports:[
     AuthModule,
     ParkingModule,
+    HistoryModule,
     TypeOrmModule.forFeature([Reservation, Car]),
   ]
 })

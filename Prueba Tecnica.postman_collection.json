@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"pepe2@gmail.com\",\r\n    \"password\": \"pepe123==M\"\r\n}",
+							"raw": "{\r\n    \"email\": \"marian@gmail.com\",\r\n    \"password\": \"Hithen==\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -118,7 +118,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYwMjI5MiwiZXhwIjoxNzMzNjA5NDkyfQ.Pu-2bCScWP8NDYGH9RQQPWGBx1TtnKaTYCYq7eFD8tQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxYTNjNGM5LWIwNWYtNDUzNS1hMzg4LWI0OGJlMWUzMGNmMiIsImlhdCI6MTczMzYzNzQ3MiwiZXhwIjoxNzMzNjQ0NjcyfQ.Er3Kviqave7razfcXmp-dBtM7o5myOtGfzDJkEcv5j0",
 									"type": "string"
 								}
 							]
@@ -127,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"location\": \"Ahogados % 17 y 18\",\r\n    \"capacity\": 24\r\n}",
+							"raw": "{\r\n    \"location\": \"Ahogados % 17 y 18\",\r\n    \"capacity\": 10\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,7 +157,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYwMjQzOSwiZXhwIjoxNzMzNjA5NjM5fQ.DlNK1OaijZCap5L0w00cuFkQSiduE7kfdE4rEXUcIr8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMzIwOTQ2LWQxN2QtNGRlMi04YTZiLTA2NzgyNGQwNGI3YSIsImlhdCI6MTczMzYzNzgzMywiZXhwIjoxNzMzNjQ1MDMzfQ.rANCVR7-RHd7tiG3OiVkj-cWyjs3BqIoDE_l7s4gq6k",
 									"type": "string"
 								}
 							]
@@ -192,7 +192,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYxNTk3NCwiZXhwIjoxNzMzNjIzMTc0fQ.Xc-FYFVwzVQuQfB4H5gsWiHSytxjG_DGaO7EfuRbkP4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNkMTRhM2ZkLTJhNjctNDg3Yy1hOWIxLTA3ZWQyNzBjODgzZiIsImlhdCI6MTczMzYzMTMyNywiZXhwIjoxNzMzNjM4NTI3fQ.FL_jqRlx4-Av-qWKHdsjAQlJdX9UKz4HsMcHLKYlL4E",
 									"type": "string"
 								}
 							]
@@ -273,7 +273,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/reservation/ec09624c-d363-48c4-b8ef-bf32bd9268eb",
+							"raw": "localhost:3000/api/reservation/53ccdf06-781a-437f-badf-58006605c6cf",
 							"host": [
 								"localhost"
 							],
@@ -281,7 +281,76 @@
 							"path": [
 								"api",
 								"reservation",
-								"ec09624c-d363-48c4-b8ef-bf32bd9268eb"
+								"53ccdf06-781a-437f-badf-58006605c6cf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "reservations-history",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/history/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"history",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cars-history",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/history/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"history",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SEED",
+			"item": [
+				{
+					"name": "seed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/seed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seed"
 							]
 						}
 					},

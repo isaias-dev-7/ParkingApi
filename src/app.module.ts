@@ -5,6 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { ParkingModule } from './parking/parking.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { CommonModule } from './common/common.module';
+import { HistoryModule } from './history/history.module';
+import { SeedModule } from './seed/seed.module';
 
 
 @Module({
@@ -24,6 +26,8 @@ import { CommonModule } from './common/common.module';
     AuthModule,
     ParkingModule,
     ReservationModule,
+    HistoryModule,
+    SeedModule,
   ],
 })
 export class AppModule {}
