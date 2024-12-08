@@ -1,19 +1,24 @@
 import { User } from "../../auth/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Car } from "./car.entity";
+import { ApiProperty } from "@nestjs/swagger";
 
 @Entity('reservation')
 export class Reservation {
 
+    @ApiProperty()
     @PrimaryGeneratedColumn('uuid')
     id_reservation: string;
 
+    @ApiProperty()
     @Column('text')
     date: string;
 
+    @ApiProperty()
     @Column('time')
     init_hour: string;
 
+    @ApiProperty()
     @Column('time')
     end_hour: string;
 
@@ -32,6 +37,7 @@ export class Reservation {
     @JoinColumn()
     car: Car;
 
+    @ApiProperty()
     @Column('text',{
         default: 'waiting',
     })

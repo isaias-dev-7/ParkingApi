@@ -22,8 +22,10 @@
 
 
 #  Parking API
-1. Clone Project
+1. Clonar Projecto
 2. ``` yarn intall ```
-3. Clone file ```.env.template ``` and rename to  ```.env```
-4. Run project ``` yarn start:dev ``` 
+3. Clonar archivo ```.env.template ``` y renombrarlo a  ```.env```
+4. Correr el comando  ``` yarn start:dev ``` 
+5. Ejecutar el endpoint ```localhost:3000/api/seed ```  para llenar la entidad de usuarios
+6. Poner el path ```localhost:3000/api ``` para ver la documentacion de los endpoints
 

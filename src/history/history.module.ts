@@ -11,6 +11,7 @@ import { ReservationHistory } from './entities/history-reservation.entity';
   controllers: [HistoryController],
   providers: [HistoryService],
   imports: [ 
+    AuthModule,
     TypeOrmModule.forFeature([CarHistory, ReservationHistory]),
   ],
   exports:[ TypeOrmModule, HistoryService ]
