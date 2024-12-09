@@ -1,11 +1,11 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { HistoryService } from './history.service';
-import { PaginationDto } from 'src/common/dtos/pagination.dto';
+import { PaginationDto } from '../common/dtos/pagination.dto';
 import { ReservationHistory } from './entities/history-reservation.entity';
 import { CarHistory } from './entities/history-car.entity';
-import { Auth } from 'src/auth/decorators';
-import { validRoles } from 'src/auth/interfaces';
+import { Auth } from '../auth/decorators';
+import { validRoles } from '../auth/interfaces';
 
 @Controller('history')
 export class HistoryController {

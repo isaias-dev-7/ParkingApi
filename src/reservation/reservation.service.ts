@@ -4,10 +4,10 @@ import { Repository } from 'typeorm';
 
 import { CreateReservationDto} from './dto/create-reservation.dto';
 import { Car, Reservation } from './entities';
-import { User } from 'src/auth/entities/user.entity';
+import { User } from '../auth/entities/user.entity';
 import { PaginationDto } from '../common/dtos/pagination.dto';
 import { isUUID } from 'class-validator';
-import { ParkingService } from 'src/parking/parking.service';
+import { ParkingService } from '../parking/parking.service';
 import { Parking } from '../parking/entities/parking.entity';
 import { HistoryService } from '../history/history.service';
 
@@ -34,6 +34,12 @@ export class ReservationService {
 
   async create(createReservationDto: CreateReservationDto, user: User) {
     try {
+      if (!this.manageSpaces(createReservationDto)) 
+        return {
+           ok: false,
+           message: "all places are reserved" 
+        };
+      
       const {brand, color, car_registration, ...rest} = createReservationDto;
       const car = await this.carRepository.create({brand, color, car_registration});
       await this.carRepository.save(car);
@@ -44,11 +50,9 @@ export class ReservationService {
       await this.historyService.createCarsH(car);
       await this.historyService.createReservationH(reservation);
   
-      this.avaliabilitySpace()
 
       return reservation;
     } catch (error) {
-      console.log(error);
       this.DbExceptions(error);
     }
   }
@@ -84,19 +88,26 @@ export class ReservationService {
   }
 
 
-  private async avaliabilitySpace(){
+  private async manageSpaces(createReservationDto: CreateReservationDto): Promise<boolean>{
     const parking = await this.parkingService.findOne();
-    if(parking[0].availability != 0){
-      const reservations_wainting = await this.reservationRepository.find();
-      for (let i = 0; i< reservations_wainting.length; i++) {
-        if(parking[0].availability === 0) break;
-        reservations_wainting[i].state ="park";
-        parking[0].availability--;
-      }
-       await this.parkingRepository.save(parking[0]);
-       await this.reservationRepository.save(reservations_wainting);
+    const make = (parking[0].availability == 0) ?
+     await this.canReserve(parking[0], createReservationDto)
+     :
+     true;
+     return make;
     }
-  }
+
+
+  private async canReserve(parking: Parking, {init_hour}: CreateReservationDto): Promise<boolean> {
+      const reservations = await this.reservationRepository.find();
+      for(const res of reservations){
+        if(Number(init_hour) < Number(res.end_hour)) return false;
+      }
+      parking.availability--;
+      await this.parkingRepository.save(parking);
+      return true;
+    }
+  
 
   private DbExceptions(error): never {
     throw (error.code === '23505') ?

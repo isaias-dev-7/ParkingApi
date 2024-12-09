@@ -22,10 +22,12 @@
 
 
 #  Parking API
-1. Clonar Projecto
-2. ``` yarn intall ```
-3. Clonar archivo ```.env.template ``` y renombrarlo a  ```.env```
-4. Correr el comando  ``` yarn start:dev ``` 
-5. Ejecutar el endpoint ```localhost:3000/api/seed ```  para llenar la entidad de usuarios
-6. Poner el path ```localhost:3000/api ``` para ver la documentacion de los endpoints
+1. El nombre de la base de datos es parking
+2. Para ejecutar los test ``` yarn test:e2e ```
+3. Clonar Projecto
+4. ``` yarn intall ```
+5. Clonar archivo ```.env.template ``` y renombrarlo a  ```.env```
+6. Correr el comando  ``` yarn start:dev ``` 
+7. Ejecutar el endpoint ```localhost:3000/api/seed ```  para llenar la entidad de usuarios
+8. Poner el path ```localhost:3000/api ``` para ver la documentacion de los endpoints
 

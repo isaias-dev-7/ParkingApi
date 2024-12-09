@@ -17,12 +17,6 @@ export class ReservationHistory {
 
     @ApiProperty()
     @Column('text')
-    date: string;
-
-    @ApiProperty()
-    @Column('text',{
-        unique: true
-    })
     email: string;
 
 }

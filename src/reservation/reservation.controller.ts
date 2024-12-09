@@ -6,7 +6,7 @@ import { Auth, GetUser } from '../auth/decorators';
 import { User } from '../auth/entities/user.entity';
 import { PaginationDto } from '../common/dtos/pagination.dto';
 import { Reservation } from './entities';
-import { validRoles } from 'src/auth/interfaces';
+import { validRoles } from '../auth/interfaces';
 
 @Controller('reservation')
 export class ReservationController {

@@ -18,18 +18,10 @@ export class CreateReservationDto {
      color: string;
 
      @ApiProperty()
-     @IsString()  
-     date: string;
-
-     @ApiProperty()
      @IsString()
-     @MinLength(5)
-     @MaxLength(5)
      init_hour: string;
 
      @ApiProperty()
      @IsString()
-     @MinLength(5)
-     @MaxLength(5)
      end_hour: string;
 }

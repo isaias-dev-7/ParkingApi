@@ -12,14 +12,10 @@ export class Reservation {
 
     @ApiProperty()
     @Column('text')
-    date: string;
-
-    @ApiProperty()
-    @Column('time')
     init_hour: string;
 
     @ApiProperty()
-    @Column('time')
+    @Column('text')
     end_hour: string;
 
     @ManyToOne(

@@ -4,8 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ReservationHistory } from './entities/history-reservation.entity';
 import { Repository } from 'typeorm';
 import { CarHistory } from './entities/history-car.entity';
-import { User } from 'src/auth/entities/user.entity';
-import { Car, Reservation } from 'src/reservation/entities';
+import { Car, Reservation } from '../reservation/entities';
 
 @Injectable()
 export class HistoryService {
@@ -49,8 +48,8 @@ export class HistoryService {
     }
 
     async createReservationH(arg: Reservation){
-       const {date,user,id_reservation,} = arg;
-       const reservationH = await this.reservationHRepository.create({date, email: user.email, id: id_reservation});
+       const {user,id_reservation,} = arg;
+       const reservationH = await this.reservationHRepository.create({email: user.email, id: id_reservation});
        await this.reservationHRepository.save(reservationH);
     }
 

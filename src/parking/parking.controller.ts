@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { ParkingService } from './parking.service';
 import { CreateParkingDto } from './dto/create-parking.dto';
-import { Auth } from 'src/auth/decorators';
-import { validRoles } from 'src/auth/interfaces';
+import { Auth } from '../auth/decorators';
+import { validRoles } from '../auth/interfaces';
 import { Parking } from './entities/parking.entity';
 
 @Controller('parking')

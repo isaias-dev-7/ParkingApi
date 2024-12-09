@@ -1,4 +1,4 @@
-import { Reservation } from "src/reservation/entities/reservation.entity";
+import { Reservation } from "../../reservation/entities";
 import { BeforeInsert, BeforeUpdate, Column,
          Entity, 
          OneToMany, 
